@@ -6,7 +6,7 @@ This is a web-based lifestyle survey application built using **Spring Boot**, **
 
 ---
 
-## 📋 Features
+## Features
 
 -  Survey form with validation
 -  Stores responses in a database
