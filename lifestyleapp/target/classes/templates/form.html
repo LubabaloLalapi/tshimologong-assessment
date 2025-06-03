@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Surveys</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        nav {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+        }
+        nav a.active {
+            color: #2196F3;
+            font-weight: bold;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-top: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"] {
+            width: 250px;
+            padding: 5px;
+        }
+        .food-options input {
+            margin-right: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f1f1f1;
+        }
+        .submit-button {
+            margin-top: 20px;
+            padding: 10px 30px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<h3>_Surveys</h3>
+
+<nav>
+    <a href="/" class="active">FILL OUT SURVEY</a>
+    <a href="/results">VIEW SURVEY RESULTS</a>
+</nav>
+
+<!-- Add this inside your <form> tag -->
+<form th:action="@{/submit}" th:object="${survey}" method="post">
+    <fieldset>
+        <legend><strong>Personal Details:</strong></legend>
+
+        <label>Full Names:</label>
+        <input type="text" th:field="*{fullName}" /><br/>
+        <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" style="color:red"></div>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" /><br/>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></div>
+
+        <label>Date of Birth:</label>
+        <input type="date" th:field="*{surveyDate}" /><br/>
+
+        <label>Age:</label>
+        <input type="number" th:field="*{age}" /><br/>
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color:red"></div>
+
+
+        <label>Contact Number:</label>
+        <input type="text" th:field="*{contactNumber}" /><br/>
+        <div th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}" style="color:red"></div>
+    </fieldset>
+
+    <br/>
+    <label><strong>What is your favorite food?</strong></label><br/>
+    <div class="food-options">
+        <label><input type="checkbox" th:field="*{favouriteFoods}" value="Pizza" />Pizza</label>
+        <label><input type="checkbox" th:field="*{favouriteFoods}" value="Pasta" />Pasta</label>
+        <label><input type="checkbox" th:field="*{favouriteFoods}" value="Pap and Wors" />Pap and Wors</label>
+        <label><input type="checkbox" th:field="*{favouriteFoods}" value="Other" />Other</label>
+    </div>
+
+    <br/>
+    <p>Please rate your level of agreement on a scale from 1 to 5, with 1 being "strongly agree" and 5 being "strongly disagree."</p>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>Strongly Agree</th>
+            <th>Agree</th>
+            <th>Neutral</th>
+            <th>Disagree</th>
+            <th>Strongly Disagree</th>
+        </tr>
+
+        <tr>
+            <td>I like to watch movies</td>
+            <td><input type="radio" th:field="*{ratingWatchMovies}" value="1" /></td>
+            <td><input type="radio" th:field="*{ratingWatchMovies}" value="2" /></td>
+            <td><input type="radio" th:field="*{ratingWatchMovies}" value="3" /></td>
+            <td><input type="radio" th:field="*{ratingWatchMovies}" value="4" /></td>
+            <td><input type="radio" th:field="*{ratingWatchMovies}" value="5" /></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div th:if="${#fields.hasErrors('ratingWatchMovies')}" th:errors="*{ratingWatchMovies}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>I like to listen to radio</td>
+            <td><input type="radio" th:field="*{ratingListenToRadio}" value="1" /></td>
+            <td><input type="radio" th:field="*{ratingListenToRadio}" value="2" /></td>
+            <td><input type="radio" th:field="*{ratingListenToRadio}" value="3" /></td>
+            <td><input type="radio" th:field="*{ratingListenToRadio}" value="4" /></td>
+            <td><input type="radio" th:field="*{ratingListenToRadio}" value="5" /></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div th:if="${#fields.hasErrors('ratingListenToRadio')}" th:errors="*{ratingListenToRadio}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>I like to eat out</td>
+            <td><input type="radio" th:field="*{ratingEatOut}" value="1" /></td>
+            <td><input type="radio" th:field="*{ratingEatOut}" value="2" /></td>
+            <td><input type="radio" th:field="*{ratingEatOut}" value="3" /></td>
+            <td><input type="radio" th:field="*{ratingEatOut}" value="4" /></td>
+            <td><input type="radio" th:field="*{ratingEatOut}" value="5" /></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div th:if="${#fields.hasErrors('ratingEatOut')}" th:errors="*{ratingEatOut}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>I like to watch TV</td>
+            <td><input type="radio" th:field="*{ratingWatchTV}" value="1" /></td>
+            <td><input type="radio" th:field="*{ratingWatchTV}" value="2" /></td>
+            <td><input type="radio" th:field="*{ratingWatchTV}" value="3" /></td>
+            <td><input type="radio" th:field="*{ratingWatchTV}" value="4" /></td>
+            <td><input type="radio" th:field="*{ratingWatchTV}" value="5" /></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div th:if="${#fields.hasErrors('ratingWatchTV')}" th:errors="*{ratingWatchTV}" style="color:red"></div>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <button class="submit-button" type="submit">SUBMIT</button>
+</form>
+
+</body>
+</html>

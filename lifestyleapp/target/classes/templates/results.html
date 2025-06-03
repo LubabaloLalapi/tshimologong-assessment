@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Survey Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .results-table {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .results-table td {
+            padding: 10px;
+        }
+
+        .left {
+            text-align: left;
+            width: 70%;
+        }
+
+        .right {
+            text-align: right;
+            width: 30%;
+        }
+
+        nav {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+        }
+
+        nav a.active {
+            color: #2196F3;
+            font-weight: bold;
+        }
+
+        .title {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h3>_Surveys</h3>
+<nav>
+    <a href="/">FILL OUT SURVEY</a>
+    <a href="/results" class="active">VIEW SURVEY RESULTS</a>
+</nav>
+
+<h2>Survey Results</h2>
+
+<table class="results-table">
+    <tr><td class="left">Total number of surveys:</td><td class="right" th:text="${total}"></td></tr>
+    <tr><td class="left">Average Age:</td><td class="right" th:text="${avgAge}"></td></tr>
+    <tr><td class="left">Oldest person who participated in survey:</td><td class="right" th:text="${maxAge}"></td></tr>
+    <tr><td class="left">Youngest person who participated in survey:</td><td class="right" th:text="${minAge}"></td></tr>
+
+    <tr><td class="left">Percentage of people who like Pizza:</td><td class="right" th:text="${pizzaPercent + ' %'}"></td></tr>
+    <tr><td class="left">Percentage of people who like Pasta:</td><td class="right" th:text="${pastaPercent + ' %'}"></td></tr>
+    <tr><td class="left">Percentage of people who like Pap and Wors:</td><td class="right" th:text="${papPercent + ' %'}"></td></tr>
+
+    <tr><td class="left">People who like to watch movies:</td><td class="right" th:text="${avgWatchMovies}"></td></tr>
+    <tr><td class="left">People who like to listen to radio:</td><td class="right" th:text="${avgListenToRadio}"></td></tr>
+    <tr><td class="left">People who like to eat out:</td><td class="right" th:text="${avgEatOut}"></td></tr>
+    <tr><td class="left">People who like to watch TV:</td><td class="right" th:text="${avgWatchTV}"></td></tr>
+</table>
+
+</body>
+</html>
